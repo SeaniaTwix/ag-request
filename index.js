@@ -1,22 +1,24 @@
-const scErrors = require('sc-errors');
+import * as scErrors from 'sc-errors';
 const InvalidActionError = scErrors.InvalidActionError;
 
-function AGRequest(socket, id, procedureName, data) {
-  this.socket = socket;
-  this.id = id;
-  this.procedure = procedureName;
-  this.data = data;
-  this.sent = false;
+export class AGRequest {
+  constructor(socket, id, procedureName, data) {
+    this.socket = socket;
+    this.id = id;
+    this.procedure = procedureName;
+    this.data = data;
+    this.sent = false;
+  }
 
-  this._respond = (responseData, options) => {
+  _respond(responseData, options) {
     if (this.sent) {
       throw new InvalidActionError(`Response to request ${this.id} has already been sent`);
     }
     this.sent = true;
     this.socket.sendObject(responseData, options);
   };
-
-  this.end = (data, options) => {
+  
+  end(data, options) {
     let responseData = {
       rid: this.id
     };
@@ -25,8 +27,8 @@ function AGRequest(socket, id, procedureName, data) {
     }
     this._respond(responseData, options);
   };
-
-  this.error = (error, options) => {
+  
+  error (error, options) {
     let responseData = {
       rid: this.id,
       error: scErrors.dehydrateError(error)
@@ -34,5 +36,3 @@ function AGRequest(socket, id, procedureName, data) {
     this._respond(responseData, options);
   };
 }
-
-module.exports = AGRequest;

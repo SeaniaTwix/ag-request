@@ -1,14 +1,14 @@
 {
   "name": "ag-request",
   "version": "1.0.0",
-  "description": "Asyngular request object.",
+  "description": "Asyngular request object. (esm)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SocketCluster/ag-request.git"
+    "url": "git+https://github.com/SeaniaTwix/ag-request.git"
   },
   "keywords": [
     "asyngular",
@@ -17,10 +17,11 @@
   "author": "Jonathan Gros-Dubois",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SocketCluster/ag-request/issues"
+    "url": "https://github.com/SeaniaTwix/ag-request/issues"
   },
-  "homepage": "https://github.com/SocketCluster/ag-request#readme",
+  "homepage": "https://github.com/SeaniaTwix/ag-request#readme",
   "dependencies": {
     "sc-errors": "^2.0.0"
-  }
+  },
+  "type": "module"
 }
